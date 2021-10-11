@@ -15,10 +15,10 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="/admin/plugins/jquery/jquery.min.js"></script>
+<script src="/admin-rifa/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/admin-rifa/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="/admin/js/adminlte.min.js"></script>
+<script src="/admin-rifa/js/adminlte.min.js"></script>
 
 </body>
