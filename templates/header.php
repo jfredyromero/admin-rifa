@@ -13,6 +13,12 @@
 	<link rel="stylesheet" href="/admin-rifa/plugins/fontawesome-free/css/all.min.css">
 	<!-- Theme style -->
 	<link rel="stylesheet" href="/admin-rifa/css/adminlte.min.css">
+
+
+	<!-- DataTables -->
+    <link rel="stylesheet" href="/admin-rifa/plugins/datatables/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/admin-rifa/plugins/datatables/css/responsive.bootstrap4.min.css">
+
 </head>
 
 <body class="hold-transition sidebar-mini">

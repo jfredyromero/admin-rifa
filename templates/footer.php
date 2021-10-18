@@ -21,4 +21,13 @@
 <!-- AdminLTE App -->
 <script src="/admin-rifa/js/adminlte.min.js"></script>
 
+<!-- DataTables -->
+<script src="/admin-rifa/plugins/jquery/jquery.dataTables.min.js"></script>
+<script src="/admin-rifa/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="/admin-rifa/plugins/datatables/js/dataTables.responsive.min.js"></script>
+<script src="/admin-rifa/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+<script src="/admin-rifa/js/datatablesApp.js"></script>
+
+
+
 </body>
