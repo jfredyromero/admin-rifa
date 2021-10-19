@@ -31,13 +31,13 @@ include_once("../../connection/connection.php");
                         <table id="registros" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>Número</th>
+                                    <th>Boleta</th>
                                     <th>Nombre</th>
                                     <th>Cédula</th>
                                     <th>Celular</th>
                                     <th>Correo</th>
                                     <th>Id transaccion</th>
-                                    <th>C.Referido</th>
+                                    <th>Referido</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -46,7 +46,7 @@ include_once("../../connection/connection.php");
                                 try {
                                     //code...
                                     $conn = mysqli_connect($host, $user, $pw, $db);
-                                    $sql = "SELECT id, numero_boleta, comprador_nombre, comprador_cedula, comprador_celular, comprador_correo, id_transaccion, codigo_referido FROM boletas";
+                                    $sql = "SELECT id, numero_boleta, comprador_nombre, comprador_cedula, comprador_celular, comprador_correo, id_transaccion, referidos.referido FROM boletas LEFT JOIN referidos ON codigo_referido = referidos.codigo";
                                     $resultado = $conn->query($sql);
                                 } catch (Exception $e) {
                                     //throw $th;
@@ -62,7 +62,7 @@ include_once("../../connection/connection.php");
                                         <td> <?php echo $registro['comprador_celular']; ?> </td>
                                         <td> <?php echo $registro['comprador_correo']; ?> </td>
                                         <td> <?php echo $registro['id_transaccion']; ?> </td>
-                                        <td> <?php echo $registro['codigo_referido']; ?> </td>
+                                        <td> <?php echo $registro['referido']; ?> </td>
                                         <td>
 
                                             <a href="#" data-id="<?php echo $registro['id']; ?>" data-tipo="ticket" class="btn bg-maroon btn-flat margin rounded borrar_registro">
@@ -74,13 +74,13 @@ include_once("../../connection/connection.php");
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Número</th>
+                                    <th>Boleta</th>
                                     <th>Nombre</th>
                                     <th>Cédula</th>
                                     <th>Celular</th>
                                     <th>Correo</th>
                                     <th>Id transaccion</th>
-                                    <th>C.Referido</th>
+                                    <th>Referido</th>
                                     <th>Acciones</th>
                                 </tr>
                             </tfoot>
