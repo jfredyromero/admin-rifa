@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="/admin-rifa/plugins/datatables/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="/admin-rifa/plugins/datatables/css/responsive.bootstrap4.min.css">
 
+	<!-- Sweet Alert 2 -->
+	<link rel="stylesheet" href="/admin-rifa/plugins/sweetalert2/css/sweetalert2.min.css">
+
 </head>
 
 <body class="hold-transition sidebar-mini">

@@ -64,11 +64,8 @@ include_once("../../connection/connection.php");
                                         <td> <?php echo $registro['id_transaccion']; ?> </td>
                                         <td> <?php echo $registro['codigo_referido']; ?> </td>
                                         <td>
-                                            <a href="updateTicket.php?id=<?php echo $registro['id']; ?>" class="btn bg-primary btn-flat rounded margin">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>
 
-                                            <a href="#" data-id="<?php echo $registro['id']; ?>" data-tipo="boleta" class="btn bg-maroon btn-flat margin rounded borrar_registro">
+                                            <a href="#" data-id="<?php echo $registro['id']; ?>" data-tipo="ticket" class="btn bg-maroon btn-flat margin rounded borrar_registro">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </td>
