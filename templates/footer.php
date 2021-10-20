@@ -16,7 +16,7 @@
 
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- <script src="/admin-rifa/plugins/jquery/jquery.min.js"></script> -->
+<script src="/admin-rifa/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/admin-rifa/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
@@ -40,7 +40,7 @@
 
 <!-- SweetAlert y Ajax -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- <script src="/admin-rifa/plugins/sweetalert2/js/sweetalert2.all.min.js"></script> -->
+<script src="/admin-rifa/plugins/sweetalert2/js/sweetalert2.all.min.js"></script>
 <script src="/admin-rifa/js/ticketAjax.js"></script>
 
 

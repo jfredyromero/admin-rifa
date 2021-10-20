@@ -1,26 +1,27 @@
 $(document).ready(function () {
 
-    $("#createTicket").on("submit", function (e) {
+    $("#btnCreateTicket").click(function (e) {
+
         e.preventDefault();
 
-        var datos = new FormData(this);
-        console.table(datos);
+        let form = $("#formCreateTicket");
+        let formData = form.serialize();
+        let formMethod = form.attr("method");
+        let formAction = form.attr("action");
+
+        console.log(formData);
+        console.log(formMethod);
+        console.log(formAction);
 
         $.ajax({
-            type: $(this).attr("method"),
-            data: datos,
-            url: $(this).attr("action"),
+            type: formMethod,
+            data: formData,
+            url: formAction,
             dataType: "json",
-            contentType: false,
-            processData: false,
-            async: true,
-            cache: false,
 
             success: function (data) {
-                console.log(data);
-                var resultado = data;
-
-                if (resultado.respuesta == "exito") {
+                console.table(data);
+                if (data.respuesta == "exito") {
                     Swal.fire({
                         title: "CORRECTO",
                         text: "Registro Exitoso",
@@ -28,24 +29,22 @@ $(document).ready(function () {
                     }).then((result) => {
                         window.location.href = "readTicket.php";
                     });
-                } else if(resultado.respuesta == "error") {
+                } else if (data.respuesta == "error") {
                     Swal.fire({
                         title: "Oops...",
                         text: "La memebresía no esta disponible",
                         icon: "error",
                     });
-                }else{
+                } else {
                     Swal.fire({
                         title: "Oops...",
-                        text: "Algo salió mal contacta el admin",
+                        text: "Algo salió mal contacta al admin",
                         icon: "error",
                     });
                 }
             },
-        });
-    });
-
-
+        })
+    })
 
 
     $(".borrar_registro").on("click", function (e) {
@@ -73,13 +72,10 @@ $(document).ready(function () {
                         id: id,
                         registro: "eliminar",
                     },
-
                     url: tipo + "Model.php",
                     success: function (data) {
-                        var resultado = JSON.parse(data);
-                        jQuery('[data-id="' + resultado.id_eliminado + '"]')
-                            .parents("tr")
-                            .remove();
+                        console.table(data)             
+                        jQuery('[data-id="' + data.id_eliminado + '"]').parents("tr").remove();
                     },
                 });
                 Swal.fire("Eliminado!", "Registro eliminado correctamente", "success");

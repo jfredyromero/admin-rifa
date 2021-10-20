@@ -25,7 +25,7 @@ include_once("../../templates/menu.php");
                 <h3 class="card-title">Agregar membresía</h3>
             </div>
             <div class="card-body">
-                <form role="form" enctype="multipart/form-data" name="createTicket" id="createTicket" method="post" action="ticketModel.php">
+                <form role="form" enctype="multipart/form-data" name="createTicket" id="formCreateTicket" method="post" action="ticketModel.php">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="usuario">Número Membresía</label>
@@ -61,7 +61,7 @@ include_once("../../templates/menu.php");
 
                     <div class="card-footer">
                         <input type="hidden" name="registro" value="nuevo">
-                        <button type="submit" class="btn btn-primary">Añadir</button>
+                        <button type="submit" id="btnCreateTicket" class="btn btn-primary">Añadir</button>
                     </div>
                 </form>
             </div>
