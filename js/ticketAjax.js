@@ -1,5 +1,53 @@
 $(document).ready(function () {
 
+    $("#createTicket").on("submit", function (e) {
+        e.preventDefault();
+
+        var datos = new FormData(this);
+        console.table(datos);
+
+        $.ajax({
+            type: $(this).attr("method"),
+            data: datos,
+            url: $(this).attr("action"),
+            dataType: "json",
+            contentType: false,
+            processData: false,
+            async: true,
+            cache: false,
+
+            success: function (data) {
+                console.log(data);
+                var resultado = data;
+
+                if (resultado.respuesta == "exito") {
+                    Swal.fire({
+                        title: "CORRECTO",
+                        text: "Registro Exitoso",
+                        icon: "success",
+                    }).then((result) => {
+                        window.location.href = "readTicket.php";
+                    });
+                } else if(resultado.respuesta == "error") {
+                    Swal.fire({
+                        title: "Oops...",
+                        text: "La memebresía no esta disponible",
+                        icon: "error",
+                    });
+                }else{
+                    Swal.fire({
+                        title: "Oops...",
+                        text: "Algo salió mal contacta el admin",
+                        icon: "error",
+                    });
+                }
+            },
+        });
+    });
+
+
+
+
     $(".borrar_registro").on("click", function (e) {
         e.preventDefault();
         var id = $(this).attr("data-id");
