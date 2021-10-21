@@ -1,35 +1,92 @@
 $(document).ready(function () {
 
+    $("#formCreateTicket").on("submit", function (e) {
 
-    $("#formCreateTicket").on("submit", function (e) {        
-        
-        
+
+        // NO BORRAR FREDDY Y GG
+        // e.preventDefault();
 
         let num = $("input[name='extra1']").val().toString();
 
-        while(num.length < 4) {num = "0" + num;}
+        while (num.length < 4) { num = "0" + num; }
 
         $("input[name='extra1']").val(num);
-        
+
         $("input[name='extra2']").val($("input[name='extra2-cc']").val() + "-" + $("input[name='extra2-name']").val());
-        
+
         $("input[name='ip']").val(myip);
 
         let nombreAdmin = "Freddy";
 
-        $("input[name='reference_pol']").val(nombreAdmin+"01");
+        $("input[name='reference_pol']").val(nombreAdmin + "01");
 
-        $("input[name='reference_sale']").val(md5($("input[name='extra2-name']").val()+'-'+$("input[name='extra1']").val()+'-'+Date.now()));
+        $("input[name='reference_sale']").val(md5($("input[name='extra2-name']").val() + '-' + $("input[name='extra1']").val() + '-' + Date.now()));
 
         $("input[name='transaction_id']").val("00000000-0000-0000-0000-000000000000");
-        
+
         $("input[name='extra3']").val(null);
 
         $("input[name='transaction_date']").val(Date.now());
-        
+
         
 
+        // NO BORRAR FREDDY Y GG
+        // let formData = $(this).serialize();
+        // $.ajax({
+        //     type: "POST",
+        //     data: formData,
+        //     url: "ticketModel.php",
+        //     dataType: "json",
+        //     success: function (data) {
+        //         console.table(data);
+        //         if (data.error == true) {
+        //             Swal.fire({
+        //                 title: "Oops...",
+        //                 text: "La memebresía no esta disponible"+data.extra2,
+        //                 icon: "error",
+        //             });
+        //         } else {
+        //             Swal.fire({
+        //                 title: "CORRECTO",
+        //                 text: "Registro Exitoso",
+        //                 icon: "success",
+        //             }).then((result) => {
+        //                 window.location.href = "readTicket.php";
+        //             });
+        //         }
+        //     }
+        // })
+
     });
+
+    $("#ticketNumber").on("input",function (e) {
+
+        let num = "extra1="+$(this).val();
+        console.log(num);
+        
+        $.ajax({
+            type: "POST",
+            data: num,
+            url: "ticketValidate.php",
+            dataType: "json",
+            success: function (data) {
+                console.table(data);
+                if (data.error == true) {
+                    console.log("red");
+                    $("#ticketNumber").removeClass("border-success");
+                    $("#ticketNumber").addClass("border-danger");
+                    $("#btnCreateTicket").prop('disabled', true)
+                } else {
+                    $("#ticketNumber").removeClass("border-danger");
+                    $("#ticketNumber").addClass("border-success");
+                    $("#btnCreateTicket").prop('disabled', false);
+                    
+                }
+            }
+        });
+
+    });
+
 
     // $("#btnCreateTicket").click(function (e) {
 
