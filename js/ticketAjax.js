@@ -60,9 +60,8 @@ $(document).ready(function () {
     });
 
     $("#ticketNumber").on("input",function (e) {
-
+        
         let num = "extra1="+$(this).val();
-        console.log(num);
         
         $.ajax({
             type: "POST",
