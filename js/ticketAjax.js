@@ -1,86 +1,117 @@
 $(document).ready(function () {
 
-    $("#btnCreateTicket").click(function (e) {
 
-        e.preventDefault();
+    $("#formCreateTicket").on("submit", function (e) {        
+        
+        
 
-        let form = $("#formCreateTicket");
-        let formData = form.serialize();
-        let formMethod = form.attr("method");
-        let formAction = form.attr("action");
+        let num = $("input[name='extra1']").val().toString();
 
-        console.log(formData);
-        console.log(formMethod);
-        console.log(formAction);
+        while(num.length < 4) {num = "0" + num;}
 
-        $.ajax({
-            type: formMethod,
-            data: formData,
-            url: formAction,
-            dataType: "json",
+        $("input[name='extra1']").val(num);
+        
+        $("input[name='extra2']").val($("input[name='extra2-cc']").val() + "-" + $("input[name='extra2-name']").val());
+        
+        $("input[name='ip']").val(myip);
 
-            success: function (data) {
-                console.table(data);
-                if (data.respuesta == "exito") {
-                    Swal.fire({
-                        title: "CORRECTO",
-                        text: "Registro Exitoso",
-                        icon: "success",
-                    }).then((result) => {
-                        window.location.href = "readTicket.php";
-                    });
-                } else if (data.respuesta == "error") {
-                    Swal.fire({
-                        title: "Oops...",
-                        text: "La memebresía no esta disponible",
-                        icon: "error",
-                    });
-                } else {
-                    Swal.fire({
-                        title: "Oops...",
-                        text: "Algo salió mal contacta al admin",
-                        icon: "error",
-                    });
-                }
-            },
-        })
-    })
+        let nombreAdmin = "Freddy";
 
+        $("input[name='reference_pol']").val(nombreAdmin+"01");
 
-    $(".borrar_registro").on("click", function (e) {
-        e.preventDefault();
-        var id = $(this).attr("data-id");
-        var tipo = $(this).attr("data-tipo");
+        $("input[name='reference_sale']").val(md5($("input[name='extra2-name']").val()+'-'+$("input[name='extra1']").val()+'-'+Date.now()));
 
-        console.log(id);
-        console.log(tipo);
+        $("input[name='transaction_id']").val("00000000-0000-0000-0000-000000000000");
+        
+        $("input[name='extra3']").val(null);
 
-        Swal.fire({
-            title: "¿Seguro que desea eliminar este registro?",
-            text: "Esta accion no se podrá deshacer",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Si, Eliminar!",
-            cancelButtonText: "Cancelar",
-        }).then((result) => {
-            if (result.value) {
-                $.ajax({
-                    type: "post",
-                    data: {
-                        id: id,
-                        registro: "eliminar",
-                    },
-                    url: tipo + "Model.php",
-                    success: function (data) {
-                        console.table(data)             
-                        jQuery('[data-id="' + data.id_eliminado + '"]').parents("tr").remove();
-                    },
-                });
-                Swal.fire("Eliminado!", "Registro eliminado correctamente", "success");
-            }
-        });
+        $("input[name='transaction_date']").val(Date.now());
+        
+        
+
     });
+
+    // $("#btnCreateTicket").click(function (e) {
+
+    //     e.preventDefault();
+
+    //     let form = $("#formCreateTicket");
+    //     let formData = form.serialize();
+    //     let formMethod = form.attr("method");
+    //     let formAction = form.attr("action");
+
+    //     console.log(formData);
+    //     console.log(formMethod);
+    //     console.log(formAction);
+
+    //     $.ajax({
+    //         type: formMethod,
+    //         data: formData,
+    //         url: formAction,
+    //         dataType: "json",
+
+    //         success: function (data) {
+    //             console.table(data);
+    //             if (data.respuesta == "exito") {
+    //                 Swal.fire({
+    //                     title: "CORRECTO",
+    //                     text: "Registro Exitoso",
+    //                     icon: "success",
+    //                 }).then((result) => {
+    //                     window.location.href = "readTicket.php";
+    //                 });
+    //             } else if (data.respuesta == "error") {
+    //                 Swal.fire({
+    //                     title: "Oops...",
+    //                     text: "La memebresía no esta disponible",
+    //                     icon: "error",
+    //                 });
+    //             } else {
+    //                 Swal.fire({
+    //                     title: "Oops...",
+    //                     text: "Algo salió mal contacta al admin",
+    //                     icon: "error",
+    //                 });
+    //             }
+    //         },
+    //     })
+    // })
+
+
+    // $(".borrar_registro").on("click", function (e) {
+    //     e.preventDefault();
+    //     var id = $(this).attr("data-id");
+    //     var tipo = $(this).attr("data-tipo");
+
+    //     console.log(id);
+    //     console.log(tipo);
+
+    //     Swal.fire({
+    //         title: "¿Seguro que desea eliminar este registro?",
+    //         text: "Esta accion no se podrá deshacer",
+    //         icon: "warning",
+    //         showCancelButton: true,
+    //         confirmButtonColor: "#3085d6",
+    //         cancelButtonColor: "#d33",
+    //         confirmButtonText: "Si, Eliminar!",
+    //         cancelButtonText: "Cancelar",
+    //     }).then((result) => {
+    //         if (result.value) {
+    //             $.ajax({
+    //                 type: "post",
+    //                 data: {
+    //                     id: id,
+    //                     registro: "eliminar",
+    //                 },
+    //                 url: tipo + "Model.php",
+    //                 success: function (data) {
+    //                     console.table(data)             
+    //                     jQuery('[data-id="' + data.id_eliminado + '"]').parents("tr").remove();
+    //                 },
+    //             });
+    //             Swal.fire("Eliminado!", "Registro eliminado correctamente", "success");
+    //         }
+    //     });
+    // });
 });
 

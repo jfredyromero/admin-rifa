@@ -16,11 +16,11 @@
 
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="/admin-rifa/plugins/jquery/jquery.min.js"></script>
+<!-- <script src="/admin-rifa/plugins/jquery/jquery.min.js"></script> -->
 <!-- Bootstrap 4 -->
 <script src="/admin-rifa/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="/admin-rifa/js/adminlte.min.js"></script>
+<script src="/admin-rifa/plugins/adminlte/js/adminlte.min.js"></script>
 
 <!-- DataTables -->
 <script src="/admin-rifa/plugins/jquery/jquery.dataTables.min.js"></script>
@@ -32,15 +32,20 @@
 <!-- Bs Custom File Input -->
 <script src="/admin-rifa/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script type="text/javascript">
-        $(document).ready(function () {
+    $(document).ready(function() {
         bsCustomFileInput.init();
-        });
+    });
 </script>
 
+<!-- Para la IP -->
+<script type="text/javascript" src="http://l2.io/ip.js?var=myip"></script>
+
+<!-- Para el MD5 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.5.0/js/md5.min.js"></script>
 
 <!-- SweetAlert y Ajax -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/admin-rifa/plugins/sweetalert2/js/sweetalert2.all.min.js"></script>
+<!-- <script src="/admin-rifa/plugins/sweetalert2/js/sweetalert2.all.min.js"></script> -->
 <script src="/admin-rifa/js/ticketAjax.js"></script>
 
 

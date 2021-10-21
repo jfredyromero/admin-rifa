@@ -1,75 +1,36 @@
 <?php
-// Agregar Nuevo Ticket
 
-if ($_POST['registro'] == 'nuevo') {
+include_once "../../connection/connection.php";
 
-    $respuesta = "";
-    $ticketNumber = $_POST['ticketNumber'];
-    $clientName = $_POST['clientName'];
-    $clientCC = $_POST['clientCC'];
-    $clientCel = $_POST['clientCel'];
-    $clientEmail = $_POST['clientEmail'];
-    $idTransaction = $_POST['idTransaction'];
-    $codReference = $_POST['codReference'];
+if ($_POST['registro'] == 'nuevo') {    
 
-    $ticketNumber = substr(strval(intval($ticketNumber) + 10000), 1);
+    $extra1 = $_POST['extra1'];
+    $extra2 = $_POST['extra2'];
+    $extra3 = $_POST['extra3'];
+    $pho = $_POST['phone'];
+    $email_buyer = $_POST['email_buyer'];
+    $ip = $_POST['ip'];
+    $reference_pol = $_POST['reference_pol'];
+    $reference_sale = $_POST['reference_sale'];
+    $transaction_id = $_POST['transaction_id'];
+    $transaction_date = $_POST['transaction_date'];
 
-    include_once "../../connection/connection.php";
-    $conn = mysqli_connect($host, $user, $pw, $db);
-    $sql = "SELECT numero_boleta FROM boletas WHERE numero_boleta = $ticketNumber";
-    $resultado = $conn->query($sql);
-
-    if ($resultado->num_rows == 1) {
-        $respuesta = "error";
-    } else {
-
-        $sql = "INSERT INTO boletas (numero_boleta, comprador_nombre, comprador_cedula, comprador_celular, comprador_correo, id_transaccion, codigo_referido) VALUES (?,?,?,?,?,?,?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssss", $ticketNumber, $clientName, $clientCC, $clientCel, $clientEmail, $idTransaction, $codReference);
-        $stmt->execute();
-        $registros = $stmt->affected_rows;
-        $stmt->close();
-
-        if ($registros > 0) {
-            $respuesta = "exito";
-        } else {
-            $respuesta = "error";
-        }
-    }
-
-    $dataAjax = [
-        "respuesta" => $respuesta
-    ];
-
-    die(json_encode($dataAjax));
+    echo $extra1 . "<br>";
+    echo $extra2 . "<br>";    
+    echo $extra3 . "<br>"; // Null
+    echo $pho . "<br>";
+    echo $email_buyer . "<br>";
+    echo $ip . "<br>";
+    echo $reference_pol . "<br>";
+    echo $reference_sale . "<br>";
+    echo $transaction_id . "<br>";
+    echo $transaction_date . "<br>";
 }
 
-// Eliminar Ticket
+// Eliminar Membresía
 
 if ($_POST['registro'] == 'eliminar') {
+    
+    
 
-    $id_borrar = $_POST['id'];
-    $respuesta = "";
-
-    try {
-
-        include_once "../../connection/connection.php";
-        $conn = mysqli_connect($host, $user, $pw, $db);
-        $stmt = $conn->prepare('DELETE FROM boletas WHERE id = ?');
-        $stmt->bind_param("i", $id_borrar);
-        $stmt->execute();
-
-        if ($stmt->affected_rows) {
-            $dataAjax["id_eliminado"] = $id_borrar;
-            $respuesta = "exito";
-        } else {
-            $respuesta = "error";
-        }
-    } catch (Exception $e) {
-        $respuesta = $e->getMessage();
-    }
-
-    $dataAjax["respuesta"] = $respuesta;
-
-    die(json_encode($respuesta));
 }
